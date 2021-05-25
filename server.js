@@ -26,8 +26,17 @@ app.get("/api/hello", function (req, res) {
 });
 
 
-
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+/** Request Header Parser Microservice */
+
+app.get('/api/whoami', function (req, res) {
+  res.json({
+    ipadress: req.ip,
+    language: req.get('accept-language'),
+    software: req.get('User-Agent')
+  })
+})
