@@ -33,10 +33,10 @@ var listener = app.listen(process.env.PORT, function () {
 
 /** Request Header Parser Microservice */
 
+app.enable('trust proxy')
 app.get('/api/whoami', function (req, res) {
-  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress
   res.json({
-    ipadress: ip,
+    ipadress: req.ip,
     language: req.get('accept-language'),
     software: req.get('User-Agent')
   })
